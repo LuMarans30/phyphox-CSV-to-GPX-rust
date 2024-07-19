@@ -1,4 +1,4 @@
-# Phyphox CSV to GPX
+# Phyphox CSV to GPX in Rust
 
 ![GitHub](https://img.shields.io/github/license/LuMarans30/phyphox-CSV-to-GPX-rust)
 ![GitHub repo size](https://img.shields.io/github/repo-size/LuMarans30/phyphox-CSV-to-GPX-rust)
