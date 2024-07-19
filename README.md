@@ -2,7 +2,6 @@
 
 ![GitHub](https://img.shields.io/github/license/LuMarans30/phyphox-CSV-to-GPX-rust)
 ![GitHub repo size](https://img.shields.io/github/repo-size/LuMarans30/phyphox-CSV-to-GPX-rust)
-![Lines of code](https://img.shields.io/tokei/lines/github/LuMarans30/phyphox-CSV-to-GPX-rust)
 ![GitHub issues](https://img.shields.io/github/issues/LuMarans30/phyphox-CSV-to-GPX-rust)
 ![GitHub last commit](https://img.shields.io/github/last-commit/LuMarans30/phyphox-CSV-to-GPX-rust)
 
