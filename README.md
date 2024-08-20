@@ -23,7 +23,7 @@ This project aims to provide a straightforward way to transform Phyphox CSV file
 To use this tool, run it from the command line with two arguments:
 cargo run <input_file.csv> <output_file.gpx>
 
-Alternatively, [precompiled binaries for Windows](https://github.com/LuMarans30/phyphox-CSV-to-GPX-rust/releases/latest) are available.
+Alternatively, [precompiled binaries for most platforms](https://github.com/LuMarans30/phyphox-CSV-to-GPX-rust/releases/latest) are available.
 
 ## CSV Format
 
