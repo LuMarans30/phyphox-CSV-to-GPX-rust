@@ -5,6 +5,14 @@ use std::{fs, time::Instant};
 
 use route_points::RoutePoint;
 
+/**
+ * Main function that reads the input CSV file, parses the route points, sorts them by time, and writes them to a GPX file. <br>
+ * The input CSV file path and output GPX file path are passed as command line arguments. <br>
+ * Example usage:
+ * ```sh
+ * csv2gpx input.csv output.gpx
+ * ```
+ */
 fn main() {
     //Args for input file and output file paths
     let args: Vec<String> = std::env::args().collect();

@@ -1,4 +1,13 @@
-//Latitude (°)","Longitude (°)","Altitude (m)","Altitude WGS84 (m)","Speed (m/s)","Direction (°)","Distance (km)","Horizontal Accuracy (m)","Vertical Accuracy (m)","Satellites"
+use std::fmt::Display;
+
+/**
+ * RoutePoint struct that represents a point in a route. <br>
+ * The struct fields are derived from the CSV file headers. <br>
+ * Example CSV file headers:
+ * ```csv
+ * "Latitude (°)","Longitude (°)","Altitude (m)","Altitude WGS84 (m)","Speed (m/s)","Direction (°)","Distance (km)","Horizontal Accuracy (m)","Vertical Accuracy (m)","Satellites"
+ * ```
+ */
 #[derive(Debug, serde::Deserialize)]
 pub struct RoutePoint {
     #[serde(rename = "Time (s)")]
@@ -22,7 +31,7 @@ pub struct RoutePoint {
 }
 
 impl RoutePoint {
-    //Use serde to deserialize the CSV file content into a RoutePoint struct
+    /// Use serde to deserialize the CSV file content into a RoutePoint struct
     pub fn from_str(data: &str) -> Vec<RoutePoint> {
         let mut rdr = csv::Reader::from_reader(data.as_bytes());
         let mut route_points = Vec::<RoutePoint>::new();
@@ -37,29 +46,27 @@ impl RoutePoint {
 
         route_points
     }
+}
 
-    /*
-    From the GPX 1.1 Topografix schema:
-    <rtept lat="latitude" lon="longitude">
-        <ele>altitudeWgs84</ele>
-        <speed>speed</speed>
-        <course>direction</course>
-        <sat>satellites</sat>
-        <hdop>hAccuracy</hdop>
-        <vdop>vAccuracy</vdop>
-    </rtept>
-    */
-    pub fn to_string(&self) -> String {
-        format!(
-            r###"
-            <rtept lat="{:.8}" lon="{:.8}">
-                <ele>{:.6}</ele>
-                <speed>{:.9}</speed>
-                <course>{:.7}</course>
-                <sat>{}</sat>
-                <hdop>{:.9}</hdop>
-                <vdop>{:.9}</vdop>
-            </rtept>"###,
+impl Display for RoutePoint {
+    /**
+     * Formats the RoutePoint struct into a string that can be written to a GPX file. <br>
+     * Example (from the GPX 1.1 Topografix schema): 
+     * ```xml
+     *   <rtept lat="latitude" lon="longitude">
+     *       <ele>altitudeWgs84</ele>
+     *       <speed>speed</speed>
+     *       <course>direction</course>
+     *       <sat>satellites</sat>
+     *       <hdop>hAccuracy</hdop>
+     *       <vdop>vAccuracy</vdop>
+     *   </rtept>
+     * ```
+     */
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(
+            f,
+            "\t\t<rtept lat=\"{:.8}\" lon=\"{:.8}\">\n\t\t\t<ele>{:.6}</ele>\n\t\t\t<speed>{:.9}</speed>\n\t\t\t<course>{:.7}</course>\n\t\t\t<sat>{}</sat>\n\t\t\t<hdop>{:.9}</hdop>\n\t\t\t<vdop>{:.9}</vdop>\n\t\t</rtept>",
             self.latitude,
             self.longitude,
             self.altitude_wgs84,
