@@ -1,10 +1,10 @@
-use std::{fs, io::Write};
+use std::{fs, io::Write, path::PathBuf};
 
 use crate::route_points::RoutePoint;
 
 /// Writes the route points to a GPX file by mapping the route points array to a vector of strings.
-pub fn write_gpx_file(filepath: &str, route_points: Vec<RoutePoint>) {
-    println!("Writing GPX file: {}", filepath);
+pub fn write_gpx_file(filepath: PathBuf, route_points: Vec<RoutePoint>) {
+    println!("Writing GPX file: {}", filepath.to_path_buf().display());
 
     let mut file = fs::File::create(filepath).expect("Unable to create file");
     let mut content = String::new();
