@@ -51,7 +51,7 @@ impl RoutePoint {
 impl Display for RoutePoint {
     /**
      * Formats the RoutePoint struct into a string that can be written to a GPX file. <br>
-     * Example (from the GPX 1.1 Topografix schema): 
+     * Example (from the GPX 1.1 Topografix schema):
      * ```xml
      *   <rtept lat="latitude" lon="longitude">
      *       <ele>altitudeWgs84</ele>
@@ -76,5 +76,25 @@ impl Display for RoutePoint {
             self.h_accuracy,
             self.v_accuracy
         )
+    }
+}
+
+impl PartialEq for RoutePoint {
+    fn eq(&self, other: &Self) -> bool {
+        self.cmp(other) == std::cmp::Ordering::Equal
+    }
+}
+
+impl Eq for RoutePoint {}
+
+impl PartialOrd for RoutePoint {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for RoutePoint {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        self.time.total_cmp(&other.time)
     }
 }

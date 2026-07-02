@@ -13,7 +13,7 @@ pub fn write_gpx_file(filepath: PathBuf, route_points: Vec<RoutePoint>) {
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gpx xmlns=\"http://www.topografix.com/GPX/1/1\" version=\"1.1\" creator=\"GPX Writer\">\n\t<rte>\n{}\n\t</rte>\n</gpx>",
         route_points
             .iter()
-            .map(|point| format!("{}", point))
+            .map(|point| format!("{point}"))
             .collect::<Vec<String>>()
             .join("\n")
     ));

@@ -5,7 +5,7 @@ use std::{fs, path::PathBuf, time::Instant};
 
 use route_points::RoutePoint;
 
-use clap::{Parser, command};
+use clap::Parser;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
@@ -56,7 +56,7 @@ fn main() {
     println!("Parsing took: {:?}", duration);
 
     // Sort the route points by time in ascending order
-    route_points.sort_by(|a, b| a.time.partial_cmp(&b.time).unwrap());
+    route_points.sort();
 
     // Write the route points to a GPX file
     gpx_writer::write_gpx_file(output_file, route_points);
